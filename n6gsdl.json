@@ -1,0 +1,92 @@
+{
+	"slug": "n6gsdl",
+	"version": 1,
+	"alias": [
+		"n6gsdl"
+	],
+	"name": "SolidSense N6GSDL (DEVELOPMENT)",
+	"arch": "armv7hf",
+	"state": "DEVELOPMENT",
+	"isDefault": true,
+	"supportsBlink": false,
+	"options": [
+		{
+			"isGroup": true,
+			"name": "network",
+			"message": "Network",
+			"options": [
+				{
+					"message": "Network Connection",
+					"name": "network",
+					"type": "list",
+					"choices": [
+						"ethernet",
+						"wifi"
+					]
+				},
+				{
+					"message": "Wifi SSID",
+					"name": "wifiSsid",
+					"type": "text",
+					"when": {
+						"network": "wifi"
+					}
+				},
+				{
+					"message": "Wifi Passphrase",
+					"name": "wifiKey",
+					"type": "password",
+					"when": {
+						"network": "wifi"
+					}
+				}
+			]
+		},
+		{
+			"isGroup": true,
+			"isCollapsible": true,
+			"collapsed": true,
+			"name": "advanced",
+			"message": "Advanced",
+			"options": [
+				{
+					"message": "Check for updates every X minutes",
+					"name": "appUpdatePollInterval",
+					"type": "number",
+					"min": 10,
+					"default": 10
+				}
+			]
+		}
+	],
+	"yocto": {
+		"machine": "n6gsdl",
+		"image": "balena-image",
+		"fstype": "balena-img",
+		"version": "yocto-dunsfell",
+		"deployArtifact": "balena-image-n6gsdl.balenaos-img",
+		"compressed": true
+	},
+	"configuration": {
+		"config": {
+			"partition": {
+				"primary": 1
+			},
+			"path": "/config.json"
+		}
+	},
+	"initialization": {
+		"options": [
+			{
+				"message": "Select a drive",
+				"type": "drive",
+				"name": "drive"
+			}
+		],
+		"operations": [
+			{
+				"command": "burn"
+			}
+		]
+	}
+}

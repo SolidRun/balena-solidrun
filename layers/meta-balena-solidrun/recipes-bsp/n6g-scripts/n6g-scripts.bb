@@ -14,7 +14,7 @@ SRCREV_SolidSense-V1 = "628fa848971ded2e2ad028b2c8a1b4b49e86eadc"
 S-V1 = "${WORKDIR}/SolidSense-V1"
 
 
-DEPENDS = " \
+RDEPENDS_${PN} = " \
     openocd \
 "
 
